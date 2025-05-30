@@ -62,6 +62,33 @@ type TStore = {
     tiqr_fee: number;
     fee_paid_by_buyer: boolean;
     wa_project?: TWAProject;
+    currency: string;
+    country: string;
+    timezone: string;
+    delivery_radius?: number | null;
+    metadata: TStoreMetaData;
+}
+
+type TStoreMetaData = {
+    "form": TFormSection[];
+    website: string;
+}
+
+type TFormSection = {
+    section: string;
+    questions: TFormQuestion[];
+}
+
+type TFormQuestion = {
+    id: string;
+    type: string;
+    title: string;
+    options: any[];
+    validations: string[];
+    description?: string;
+    readOnly: boolean;
+    value?: string;
+    hidden: boolean;
 }
 
 type TWAProject = {
@@ -76,10 +103,10 @@ type TProductPayload = {
     description: string;
     long_description: string;
     is_active: boolean;
-    images: TChatFile[];
     options: TProductOption[];
     addons: number[];
     duration: number;
+    tags?: string[];
 };
 
 type TProduct = {
@@ -87,12 +114,12 @@ type TProduct = {
     name: string;
     description: string;
     is_active: boolean;
-    images: TChatFile[];
     options: TProductOption[];
     long_description: string;
     store: TStore;
     duration: number;
     min_price: number;
+    tags?: string[];
 };
 
 type TProductDetails = TProduct & {
@@ -107,10 +134,10 @@ type TProductOption = {
     is_active?: boolean;
     sequence?: number;
     is_deleted?: boolean;
+    tags?: string[];
     description?: string;
     duration?: number;
 };
-
 
 type TOrderLog = {
     new_status: string;
@@ -135,17 +162,9 @@ type TShopMetaData = {
     delivery_date: string;
 };
 
-type TBookedAddon = {
-    id: number;
-    quantity: number;
-    amount: number;
-    addon: TAddon;
-    created_at: string;
-}
-
 
 type TOrderDetails = TOrder & {
-    addons: TAddon[];
+    total_duration: number;
 };
 
 type TOrderItem = {
@@ -185,10 +204,8 @@ type TCartItem = {
 //Store Front End
 type TStoreHomeData = {
     error: boolean;
-    errorMessage?: string;
     store?: TStore;
     products?: TListResponse<TProduct>;
-    errorStack?: string;
 };
 
 type TProductDetailsPageProps = {
@@ -209,12 +226,22 @@ type TTileSelectOption = {
     label: string;
     description?: string;
     value: any;
-    className?: string;
-    disabled?: boolean;
 };
 
+type TTimeSlot = {
+    id?: number;
+    start_time: string;
+    end_time: string;
+}
+
 // Order & Payment
-type TOrder = {
+
+type TOrderDetailsDrawer = {
+    id: number;
+    order_type: 'appointment' | 'product';
+}
+
+type TOrder = TOrderDetailsDrawer & {
     uuid: string;
     display_uid: string;
     ordered_by: TUser;
@@ -230,7 +257,21 @@ type TOrder = {
     total_amount: number;
     payment: TPayment;
     addons: TBookedAddon[];
+    time_slot: TTimeSlotResponse;
+    total_duration: number;
 };
+
+
+
+type TTimeSlotResponse = {
+    id: number;
+    template: number;
+    start_time: string;
+    end_time: string;
+    is_available: boolean;
+    limit: number;
+    confirmed_bookings: number;
+}
 
 type TPayment = {
     id: number;
@@ -274,7 +315,10 @@ type TCountry = {
     id: string;
     value: string;
     label: string;
+    locale: string;
     currency: TCurrency[];
+    phoneInputCountryCode: string;
+    timezone: string;
 }
 
 type TAddon = {
@@ -284,9 +328,16 @@ type TAddon = {
     price: number;
     duration?: number;
     is_active?: boolean;
-    images?: TChatFile[];
     min_quantity?: number;
     max_quantity?: number;
+}
+
+type TBookedAddon = {
+    id: number;
+    quantity: number;
+    amount: number;
+    addon: TAddon;
+    created_at: string;
 }
 
 
@@ -297,10 +348,11 @@ type TDailyAvailability = {
     id?: number;
     template?: number;
     day_of_week: TDayOfWeek;
-    start_time: string;
-    end_time: string;
+    time_intervals: TTimeSlot;
     max_bookings: number;
 }
+
+
 
 type TSchedule = {
     id: number;
