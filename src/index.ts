@@ -363,3 +363,30 @@ type TSchedule = {
     booking_limit: number;
     daily_availabilities: TDailyAvailability[];
 }
+
+
+type Tier = {
+    name: string;
+    id: string;
+    href: string;
+    priceMonthly: string;
+    mostPopular: boolean;
+};
+
+type Feature = {
+    name: string;
+    info?: string;
+    tiers: {
+        [key: string]: boolean | string;
+    };
+};
+
+type Section = {
+    name: string;
+    features: Feature[];
+};
+
+type PricingTableProps = {
+    tiers: Tier[];
+    sections: Section[];
+};
