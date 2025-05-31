@@ -1,11 +1,13 @@
-type TListResponse<T> = {
+// index.ts within your custom.package
+
+export type TListResponse<T> = {
     count: number;
     next?: number;
     previous?: number;
     results: T[];
 };
 
-type TUser = {
+export type TUser = {
     id: number;
     email: string;
     first_name: string;
@@ -34,7 +36,7 @@ type TUser = {
     addresses: TAddress[];
 };
 
-type TAddress = {
+export type TAddress = {
     id: number;
     name: string;
     address_line_1: string;
@@ -48,7 +50,7 @@ type TAddress = {
     instructions: string;
 };
 
-type TStore = {
+export type TStore = {
     id: number;
     name: string;
     owner: TUser;
@@ -69,17 +71,17 @@ type TStore = {
     metadata: TStoreMetaData;
 }
 
-type TStoreMetaData = {
+export type TStoreMetaData = {
     "form": TFormSection[];
     website: string;
 }
 
-type TFormSection = {
+export type TFormSection = {
     section: string;
     questions: TFormQuestion[];
 }
 
-type TFormQuestion = {
+export type TFormQuestion = {
     id: string;
     type: string;
     title: string;
@@ -91,13 +93,13 @@ type TFormQuestion = {
     hidden: boolean;
 }
 
-type TWAProject = {
+export type TWAProject = {
     id: number;
     name: string;
     phone_number: string;
 }
 
-type TProductPayload = {
+export type TProductPayload = {
     id: number;
     name: string;
     description: string;
@@ -109,7 +111,7 @@ type TProductPayload = {
     tags?: string[];
 };
 
-type TProduct = {
+export type TProduct = {
     id: number;
     name: string;
     description: string;
@@ -122,11 +124,11 @@ type TProduct = {
     tags?: string[];
 };
 
-type TProductDetails = TProduct & {
+export type TProductDetails = TProduct & {
     addons?: TAddon[];
 };
 
-type TProductOption = {
+export type TProductOption = {
     id?: number;
     name: string;
     price: number;
@@ -139,12 +141,12 @@ type TProductOption = {
     duration?: number;
 };
 
-type TOrderLog = {
+export type TOrderLog = {
     new_status: string;
     created_at: string;
 };
 
-type TBuyerMetaData = {
+export type TBuyerMetaData = {
     notes: string;
     phone: string;
     shipping_address?: TAddress;
@@ -156,18 +158,17 @@ type TBuyerMetaData = {
     [key: string]: any;
 };
 
-type TShopMetaData = {
+export type TShopMetaData = {
     courier_name: string;
     tracking_number: string;
     delivery_date: string;
 };
 
-
-type TOrderDetails = TOrder & {
+export type TOrderDetails = TOrder & {
     total_duration: number;
 };
 
-type TOrderItem = {
+export type TOrderItem = {
     id: number;
     product_option_snapshot: TProductOptionSnapshot;
     quantity: number;
@@ -175,26 +176,24 @@ type TOrderItem = {
     created_at: string;
 };
 
-type TProductOptionSnapshot = TProductOption & {
+export type TProductOptionSnapshot = TProductOption & {
     product: TProductDetails;
 };
 
-type TOrderStatusDetails = {
+export type TOrderStatusDetails = {
     description: string;
     label: string;
     className: string;
     status: string;
 }
 
-
-
-type TCart = {
+export type TCart = {
     amount: number,
     store: number;
     cart_items: TCartItem[]
 }
 
-type TCartItem = {
+export type TCartItem = {
     id: number,
     quantity: number,
     amount: number,
@@ -202,46 +201,44 @@ type TCartItem = {
 }
 
 //Store Front End
-type TStoreHomeData = {
+export type TStoreHomeData = {
     error: boolean;
     store?: TStore;
     products?: TListResponse<TProduct>;
 };
 
-type TProductDetailsPageProps = {
+export type TProductDetailsPageProps = {
     productData: TProductDetails;
     store: TStore;
     storeProducts?: TListResponse<TProduct>;
 };
 
-type TCheckoutPageProps = {
+export type TCheckoutPageProps = {
     optionsData: TProductOption[];
     checkoutFrom: 'cart' | 'product';
     cartData?: TCart;
 };
 
-
-type TTileSelectOption = {
+export type TTileSelectOption = {
     id: string;
     label: string;
     description?: string;
     value: any;
 };
 
-type TTimeSlot = {
+export type TTimeSlot = {
     id?: number;
     start_time: string;
     end_time: string;
 }
 
 // Order & Payment
-
-type TOrderDetailsDrawer = {
+export type TOrderDetailsDrawer = {
     id: number;
     order_type: 'appointment' | 'product';
 }
 
-type TOrder = TOrderDetailsDrawer & {
+export type TOrder = TOrderDetailsDrawer & {
     uuid: string;
     display_uid: string;
     ordered_by: TUser;
@@ -261,9 +258,7 @@ type TOrder = TOrderDetailsDrawer & {
     total_duration: number;
 };
 
-
-
-type TTimeSlotResponse = {
+export type TTimeSlotResponse = {
     id: number;
     template: number;
     start_time: string;
@@ -273,7 +268,7 @@ type TTimeSlotResponse = {
     confirmed_bookings: number;
 }
 
-type TPayment = {
+export type TPayment = {
     id: number;
     status: string;
     payment_gateway: string;
@@ -283,35 +278,34 @@ type TPayment = {
     callback_url: string;
 };
 
-type TPaymentMetaData = {
+export type TPaymentMetaData = {
     payment_id: string;
     payment_gateway: string;
     url_to_redirect: string;
 };
 
-
-type TOrderDaysFilterOptions = "today" | "last_week" | "last_month" | "last_year" | "all_time";
-type TOrderSummaryFilter = {
+export type TOrderDaysFilterOptions = "today" | "last_week" | "last_month" | "last_year" | "all_time";
+export type TOrderSummaryFilter = {
     startDate: string;
     endDate: string;
 }
 
-type TChatFile = {
+export type TChatFile = {
     id: number;
     file_upload: string;
     type: string;
 };
 
-type TKycStatus = "not_submitted" | "processing" | "approved" | "rejected" | "provisional";
+export type TKycStatus = "not_submitted" | "processing" | "approved" | "rejected" | "provisional";
 
-type TCurrency = {
+export type TCurrency = {
     id: string;
     value: string;
     label: string;
     symbol: string;
 }
 
-type TCountry = {
+export type TCountry = {
     id: string;
     value: string;
     label: string;
@@ -321,7 +315,7 @@ type TCountry = {
     timezone: string;
 }
 
-type TAddon = {
+export type TAddon = {
     id?: number;
     name: string;
     description?: string;
@@ -332,7 +326,7 @@ type TAddon = {
     max_quantity?: number;
 }
 
-type TBookedAddon = {
+export type TBookedAddon = {
     id: number;
     quantity: number;
     amount: number;
@@ -340,11 +334,10 @@ type TBookedAddon = {
     created_at: string;
 }
 
-
 // Appointments
-type TDayOfWeek = "MON" | "TUE" | "WED" | "THU" | "FRI" | "SAT" | "SUN";
+export type TDayOfWeek = "MON" | "TUE" | "WED" | "THU" | "FRI" | "SAT" | "SUN";
 
-type TDailyAvailability = {
+export type TDailyAvailability = {
     id?: number;
     template?: number;
     day_of_week: TDayOfWeek;
@@ -352,9 +345,7 @@ type TDailyAvailability = {
     max_bookings: number;
 }
 
-
-
-type TSchedule = {
+export type TSchedule = {
     id: number;
     store: number;
     name: string;
@@ -364,8 +355,7 @@ type TSchedule = {
     daily_availabilities: TDailyAvailability[];
 }
 
-
-type Tier = {
+export type Tier = {
     name: string;
     id: string;
     href: string;
@@ -373,7 +363,7 @@ type Tier = {
     mostPopular: boolean;
 };
 
-type Feature = {
+export type Feature = {
     name: string;
     info?: string;
     tiers: {
@@ -381,12 +371,12 @@ type Feature = {
     };
 };
 
-type Section = {
+export type Section = {
     name: string;
     features: Feature[];
 };
 
-type PricingTableProps = {
+export type PricingTableProps = {
     tiers: Tier[];
     sections: Section[];
 };
