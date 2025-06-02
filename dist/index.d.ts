@@ -1,26 +1,4 @@
-import { IncomingMessage } from "http";
-import { ServerResponse } from "http";
-import { ParsedUrlQuery } from "querystring";
 export * from "./hook/useServiceBooking";
-export type NextApiRequestCookies = Partial<{
-    [key: string]: string;
-}>;
-export type PreviewData = string | false | object | undefined;
-export type GetServerSidePropsContext<Params extends ParsedUrlQuery = ParsedUrlQuery, Preview extends PreviewData = PreviewData> = {
-    req: IncomingMessage & {
-        cookies: NextApiRequestCookies;
-    };
-    res: ServerResponse;
-    params?: Params;
-    query: ParsedUrlQuery;
-    preview?: boolean;
-    previewData?: Preview;
-    draftMode?: boolean;
-    resolvedUrl: string;
-    locale?: string;
-    locales?: string[];
-    defaultLocale?: string;
-};
 export type TListResponse<T> = {
     count: number;
     next?: number;

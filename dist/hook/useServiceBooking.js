@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { getProductDetails } from '../utils/lib/product'; // adjust based on your package structure
+import { getProductDetails } from '../utils/lib/product';
 import { paiseToRupeesWithoutFormatting } from '../utils/lib/currency';
 import { logger } from '../../src/user/constant';
 import { CONFIG } from '../user/config';
