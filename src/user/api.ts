@@ -1,5 +1,8 @@
 import { CONFIG } from "./config";
-import { GetServerSidePropsContext } from "../index";
+import { GetServerSidePropsContext } from "next";
+import { IncomingMessage } from "http";
+import { ParsedUrlQuery } from "querystring";
+import { ServerResponse } from "http";
 
 const LOGOUT_BYPASSED_URLS = ["service/owner/store/", "customer/user", "service/buyer/cart/"];
 

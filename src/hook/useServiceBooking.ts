@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
-import { getProductDetails } from '../utils/lib/product'; // adjust based on your package structure
+import { getProductDetails } from '../utils/lib/product'; 
 import { paiseToRupeesWithoutFormatting } from '../utils/lib/currency';
 import { logger } from '../../src/user/constant'
-import type { TProductDetails, TStoreHomeData } from '../index'; // adjust path if needed
+import type { TProductDetails, TStoreHomeData } from '../index'; 
 import { CONFIG } from '../user/config';
 
 const CategoryServices = {
