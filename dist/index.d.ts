@@ -1,4 +1,3 @@
-export * from "./hook/useServiceBooking";
 export type TListResponse<T> = {
     count: number;
     next?: number;

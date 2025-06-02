@@ -2,11 +2,11 @@
   "compilerOptions": {
     "outDir": "dist",
     "declaration": true,
-    "emitDeclarationOnly": true,                 // ✅ Only emit .d.ts files
+    "emitDeclarationOnly": true,                 
     "module": "ESNext",
     "target": "ESNext",
     "moduleResolution": "Node",
-    "jsx": "react",                              // ✅ Needed for JSX in types
+    "jsx": "react",                              
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
