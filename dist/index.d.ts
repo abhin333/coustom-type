@@ -1,3 +1,5 @@
+import { useServiceBooking } from "./hook/useServiceBooking";
+export default useServiceBooking;
 export type TListResponse<T> = {
     count: number;
     next?: number;
