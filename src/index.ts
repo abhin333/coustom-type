@@ -1,4 +1,4 @@
-// index.ts within your custom.package
+
 
 export type TListResponse<T> = {
     count: number;
