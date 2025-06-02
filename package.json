@@ -1,10 +1,10 @@
 {
   "name": "my-custom-types",
   "version": "1.0.0",
-  "main": "dist/index.ts",
-  "types": "dist/index.d.ts",
+  "main": "dist/index.js",               
+  "types": "dist/index.d.ts",            
   "files": [
-    "dist"
+    "dist"                              
   ],
   "scripts": {
     "build": "tsc"
