@@ -2,9 +2,8 @@
   "compilerOptions": {
     "outDir": "dist",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
     "declaration": true,
-    "emitDeclarationOnly": false,          // ✅ emit both JS and .d.ts
+    "emitDeclarationOnly": false,         
     "module": "esnext",
     "target": "ES2017",
     "moduleResolution": "Node",
